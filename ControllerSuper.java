@@ -161,12 +161,8 @@ public class ControllerSuper {
     }
 
     @FXML
-    void pagarCajas(ActionEvent event) throws Exception {
-        
-        
-        
+    void pagarCajas(ActionEvent event) throws Exception { 
         if (!pagoCaja1.colaVacia()) {
-
             pagoCaja1.quitar();
             retornarCarritos();
             lblCantidadDeClientes.setText(String.valueOf(clientesEnTienda.tamañoDeLaCola()));
@@ -189,7 +185,6 @@ public class ControllerSuper {
             JOptionPane.showMessageDialog(null, "No hay nadie en ninguna de las cajas");
         }
         lblClientesEnCola.setText(String.valueOf(colaCaja1.tamañoDeLaCola() + colaCaja2.tamañoDeLaCola() + colaCaja3.tamañoDeLaCola()));
-
     }
     
     @FXML
