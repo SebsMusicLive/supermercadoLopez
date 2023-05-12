@@ -113,15 +113,15 @@ public class ControllerSuper {
     //Colas
     private ColaArray<Integer> carritosDisponibles = new ColaArray<>();
     private ColaArray<Integer> carritosEntienda = new ColaArray<>();
-    private ColaArray<Integer> pagoCaja1 = new ColaArray<>();
-    private ColaArray<Integer> pagoCaja2 = new ColaArray<>();
-    private ColaArray<Integer> pagoCaja3 = new ColaArray<>();
+    private ColaArray<Object> pagoCaja1 = new ColaArray<>();
+    private ColaArray<Object> pagoCaja2 = new ColaArray<>();
+    private ColaArray<Object> pagoCaja3 = new ColaArray<>();
 
-    private ColaLista<Integer> colaCaja1 = new ColaLista<>();
-    private ColaLista<Integer> colaCaja2 = new ColaLista<>();
-    private ColaLista<Integer> colaCaja3 = new ColaLista<>();
-    private ColaLista<Integer> clientesEnTienda = new ColaLista<>();
-    private ColaLista<Integer> clientesEnEspera = new ColaLista<>();
+    private ColaLista<Object> colaCaja1 = new ColaLista<>();
+    private ColaLista<Object> colaCaja2 = new ColaLista<>();
+    private ColaLista<Object> colaCaja3 = new ColaLista<>();
+    private ColaLista<Object> clientesEnTienda = new ColaLista<>();
+    private ColaLista<Object> clientesEnEspera = new ColaLista<>();
 
     Supermercado superCarritosDisponibles = new Supermercado(carritosDisponibles);
     Supermercado superCarritosTienda = new Supermercado(carritosEntienda);
@@ -226,7 +226,6 @@ public class ControllerSuper {
         } else {
             JOptionPane.showMessageDialog(null, "No hay clientes en la cola");
         }
-
     }
 
     @FXML
