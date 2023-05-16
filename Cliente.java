@@ -11,6 +11,7 @@ package supermercadoLopez;
 public class Cliente {
     private int idCliente;
     private String nombre;
+   
 
     public Cliente() {
     }
@@ -18,6 +19,7 @@ public class Cliente {
     public Cliente(int idCliente, String nombre) {
         this.idCliente = idCliente;
         this.nombre = nombre;
+        
     }
 
     public int getIdCliente() {
@@ -36,5 +38,9 @@ public class Cliente {
         this.nombre = nombre;
     }
     
-    
+    @Override
+    public String toString(){
+        
+        return "Id: "+ this.getIdCliente() + "\n Nombre: "+this.getNombre();
+    }
 }

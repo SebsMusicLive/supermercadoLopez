@@ -58,7 +58,6 @@ public class ColaLista<E> {
     }
     public String print() {
         StringBuffer sb = new StringBuffer("");
-
         if (!colaVacia()) {
             NodoCola<E> current = frente;
             //sb.append("[");
@@ -67,6 +66,7 @@ public class ColaLista<E> {
                 current = current.getNext();
                
             }
+            
 
         } else {
             sb.append("No se puede imprimir, la lista se encuentra vacia");

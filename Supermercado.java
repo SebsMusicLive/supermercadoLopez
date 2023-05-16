@@ -10,6 +10,8 @@ package supermercadoLopez;
  */
 public class Supermercado {
 //    private int clientes = 1;
+    private int idCliente = 0;
+    private int id = 0;
     
     public Supermercado(ColaArray<Integer> colaCarritos){
         colaCarritos.crearCola(25);
@@ -22,8 +24,6 @@ public class Supermercado {
         pagoCaja3.crearCola(1);
     }
     
-    
-    
     public void llenarColaCarritos(ColaArray<Integer> colaCarritos) throws Exception{
         int carritos =1;
         for (int i = 0; i < colaCarritos.tamañoCola();i++) {
@@ -31,13 +31,8 @@ public class Supermercado {
         }
     }
     
-    
-    
     public void añadirClientes(ColaLista<Object> clientesAñ){
-        
-        int idCliente = 0;
-        
-        Cliente c1 = new Cliente(idCliente, nombreRandomCliente());
+        Cliente c1 = new Cliente(idCliente++, nombreRandomCliente());
         
         clientesAñ.insertar(c1);
         
@@ -46,9 +41,8 @@ public class Supermercado {
     
     public String nombreRandomCliente(){
         String nombre = "Cliente ";
-        int id = 0;
-        
-        return nombre+=id;
+
+        return nombre+=id++;
     }
     
     public String mostrarCarritos(ColaArray<Integer> colaCarritos){
