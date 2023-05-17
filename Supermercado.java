@@ -9,9 +9,7 @@ package supermercadoLopez;
  * @author ASUS
  */
 public class Supermercado {
-//    private int clientes = 1;
-    private int idCliente = 0;
-    private int id = 0;
+    private int numeroCliente = 1;
     
     public Supermercado(ColaArray<Integer> colaCarritos){
         colaCarritos.crearCola(25);
@@ -31,19 +29,24 @@ public class Supermercado {
         }
     }
     
-    public void añadirClientes(ColaLista<Object> clientesAñ){
-        Cliente c1 = new Cliente(idCliente++, nombreRandomCliente());
+    public void añadirClientes(ColaLista<Object> clientesAñ, int cedula, String nombre){
+        
+        
+        Cliente c1 = new Cliente(cedula, nombre);
         
         clientesAñ.insertar(c1);
         
 //       clientesAñ.insertar(clientes++);
     }
     
-    public String nombreRandomCliente(){
-        String nombre = "Cliente ";
-
-        return nombre+=id++;
+    public void añadirClientesAleatorios(ColaLista<Object> clientesAñ){
+        Cliente c1 = new Cliente((int)(Math.random()*1000000000 + 1), "Cliente "+numeroCliente++);
+        
+        clientesAñ.insertar(c1);
+        
     }
+    
+    
     
     public String mostrarCarritos(ColaArray<Integer> colaCarritos){
         return colaCarritos.print(); 

@@ -9,25 +9,25 @@ package supermercadoLopez;
  * @author ASUS
  */
 public class Cliente {
-    private int idCliente;
+    private int cedula;
     private String nombre;
    
 
     public Cliente() {
     }
 
-    public Cliente(int idCliente, String nombre) {
-        this.idCliente = idCliente;
+    public Cliente(int cedula, String nombre) {
+        this.cedula = cedula;
         this.nombre = nombre;
         
     }
 
-    public int getIdCliente() {
-        return idCliente;
+    public int getCedula() {
+        return cedula;
     }
 
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
+    public void setCedula(int idCliente) {
+        this.cedula = idCliente;
     }
 
     public String getNombre() {
@@ -41,6 +41,6 @@ public class Cliente {
     @Override
     public String toString(){
         
-        return "Id: "+ this.getIdCliente() + "\n Nombre: "+this.getNombre();
+        return "Cédula: "+ this.getCedula() + "\n Nombre: "+this.getNombre();
     }
 }
