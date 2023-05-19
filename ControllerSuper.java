@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javax.swing.JOptionPane;
 
@@ -30,9 +31,6 @@ public class ControllerSuper {
     private Button btnGenerarClienteAleatorio;
 
     @FXML
-    private Button btnLlegoUnCliente;
-
-    @FXML
     private Button btnPagarCaja1;
 
     @FXML
@@ -49,6 +47,9 @@ public class ControllerSuper {
 
     @FXML
     private Button btnPagarEnCajaUno;
+
+    @FXML
+    private Label lblClientesEnLaTienda;
 
     @FXML
     private Label lblCaja1;
@@ -88,6 +89,15 @@ public class ControllerSuper {
 
     @FXML
     private Label lblFacturadoCaja3;
+    
+    @FXML
+    private Label lblFacturadoCajas;
+
+    @FXML
+    private Label lblFacturadoCajas1;
+
+    @FXML
+    private Label lblFacturadoCajas2;
 
     @FXML
     private Label lblNombre;
@@ -132,47 +142,29 @@ public class ControllerSuper {
     private TextField txtNombre;
 
     @FXML
-    private TextField txtProductosDisponibles;
+    private TextArea txtProductosDisponibles;
+
+    @FXML
+    private TextArea txtClientesEnTienda;
 
     //Colas
     private ColaArray<Integer> carritosDisponibles = new ColaArray<>();
     private ColaArray<Integer> carritosEntienda = new ColaArray<>();
-    private ColaArray<Object> pagoCaja1 = new ColaArray<>();
-    private ColaArray<Object> pagoCaja2 = new ColaArray<>();
-    private ColaArray<Object> pagoCaja3 = new ColaArray<>();
+    private ColaArray<Cliente> pagoCaja1 = new ColaArray<>();
+    private ColaArray<Cliente> pagoCaja2 = new ColaArray<>();
+    private ColaArray<Cliente> pagoCaja3 = new ColaArray<>();
 
-    private ColaLista<Object> colaCaja1 = new ColaLista<>();
-    private ColaLista<Object> colaCaja2 = new ColaLista<>();
-    private ColaLista<Object> colaCaja3 = new ColaLista<>();
-    private ColaLista<Object> clientesEnTienda = new ColaLista<>();
-    private ColaLista<Object> clientesEnEspera = new ColaLista<>();
+    private ColaLista<Cliente> colaCaja1 = new ColaLista<>();
+    private ColaLista<Cliente> colaCaja2 = new ColaLista<>();
+    private ColaLista<Cliente> colaCaja3 = new ColaLista<>();
+    private ColaLista<Cliente> clientesEnTienda = new ColaLista<>();
+    private ColaLista<Cliente> clientesEnEspera = new ColaLista<>();
+
+    Supermercado superMerc = new Supermercado();
 
     Supermercado superCarritosDisponibles = new Supermercado(carritosDisponibles);
     Supermercado superCarritosTienda = new Supermercado(carritosEntienda);
     Supermercado colaCajas = new Supermercado(pagoCaja1, pagoCaja2, pagoCaja3);
-
-    @FXML
-    void agregarCliente(ActionEvent event) throws Exception {
-
-//        if (carritosDisponibles.colaVacia()) {
-//            superCarritosDisponibles.añadirClientes(clientesEnEspera);
-//
-//            String clientesStr = String.valueOf(clientesEnEspera.tamañoDeLaCola());
-//
-//            txtClientesEnEspera.setText(clientesStr);
-//        } else {
-//
-//            superCarritosDisponibles.añadirClientes(clientesEnTienda);
-//            String clientesStr = String.valueOf(clientesEnTienda.tamañoDeLaCola());
-//
-//            lblCantidadDeClientes.setText(clientesStr);
-//
-//            carritosEntienda.insertar(carritosDisponibles.quitar());
-//
-//        }
-//
-//        txtCarritosDisponibles.setText((String) (superCarritosDisponibles.mostrarCarritos(carritosDisponibles)));
-    }
 
     @FXML
     void finalizarCompra(ActionEvent event) throws Exception {
@@ -197,6 +189,7 @@ public class ControllerSuper {
                 lblCantidadDeClientes.setText(String.valueOf(clientesEnTienda.tamañoDeLaCola()));
             }
             lblClientesEnCola.setText(String.valueOf(colaCaja1.tamañoDeLaCola() + colaCaja2.tamañoDeLaCola() + colaCaja3.tamañoDeLaCola()));
+            txtClientesEnTienda.setText(superMerc.mostrarClientes(clientesEnTienda));
         } else if (colaCaja1.colaVacia() && colaCaja2.colaVacia() && colaCaja3.colaVacia()) {
             JOptionPane.showMessageDialog(null, "No hay clientes en la tienda");
         } else {
@@ -255,6 +248,7 @@ public class ControllerSuper {
     @FXML
     void pagarCaja1(ActionEvent event) throws Exception {
         if (!pagoCaja1.colaVacia()) {
+            lblFacturadoCaja1.setText(pagoCaja1.print());
             pagoCaja1.quitar();
             retornarCarritos();
             lblCantidadDeClientes.setText(String.valueOf(clientesEnTienda.tamañoDeLaCola()));
@@ -265,6 +259,8 @@ public class ControllerSuper {
             } else {
                 txtCaja1.setText("");
             }
+            
+            
         } else {
             JOptionPane.showMessageDialog(null, "No hay nadie en la cola de la caja 1");
         }
@@ -324,11 +320,12 @@ public class ControllerSuper {
             int cedulaCliente = Integer.valueOf(txtCedula.getText());
             String nombreCliente = txtNombre.getText();
             if (carritosDisponibles.colaVacia()) {
-                superCarritosDisponibles.añadirClientes(clientesEnEspera, cedulaCliente, nombreCliente);
+                superMerc.añadirClientes(clientesEnEspera, cedulaCliente, nombreCliente);
 
                 String clientesStr = String.valueOf(clientesEnEspera.tamañoDeLaCola());
 
                 txtClientesEnEspera.setText(clientesStr);
+
                 txtNombre.setText("");
                 txtCedula.setText("");
 
@@ -338,12 +335,12 @@ public class ControllerSuper {
                 String clientesStr = String.valueOf(clientesEnTienda.tamañoDeLaCola());
 
                 lblCantidadDeClientes.setText(clientesStr);
-
                 carritosEntienda.insertar(carritosDisponibles.quitar());
                 txtNombre.setText("");
                 txtCedula.setText("");
 
             }
+            txtClientesEnTienda.setText(superMerc.mostrarClientes(clientesEnTienda));
 
             txtCarritosDisponibles.setText((String) (superCarritosDisponibles.mostrarCarritos(carritosDisponibles)));
         } else {
@@ -355,27 +352,25 @@ public class ControllerSuper {
     @FXML
     void generarClienteAleatorio(ActionEvent event) throws Exception {
         if (carritosDisponibles.colaVacia()) {
-                superCarritosDisponibles.añadirClientesAleatorios(clientesEnTienda);
+            superCarritosDisponibles.añadirClientesAleatorios(clientesEnTienda);
 
-                String clientesStr = String.valueOf(clientesEnEspera.tamañoDeLaCola());
+            String clientesStr = String.valueOf(clientesEnEspera.tamañoDeLaCola());
 
-                txtClientesEnEspera.setText(clientesStr);
-                
+            txtClientesEnEspera.setText(clientesStr);
 
-            } else {
+        } else {
 
-                superCarritosDisponibles.añadirClientesAleatorios(clientesEnTienda);
-                String clientesStr = String.valueOf(clientesEnTienda.tamañoDeLaCola());
+            superCarritosDisponibles.añadirClientesAleatorios(clientesEnTienda);
+            String clientesStr = String.valueOf(clientesEnTienda.tamañoDeLaCola());
 
-                lblCantidadDeClientes.setText(clientesStr);
+            lblCantidadDeClientes.setText(clientesStr);
 
-                carritosEntienda.insertar(carritosDisponibles.quitar());
-                
+            carritosEntienda.insertar(carritosDisponibles.quitar());
 
-            }
+        }
+        txtClientesEnTienda.setText(superMerc.mostrarClientes(clientesEnTienda));
+        txtCarritosDisponibles.setText((String) (superCarritosDisponibles.mostrarCarritos(carritosDisponibles)));
 
-            txtCarritosDisponibles.setText((String) (superCarritosDisponibles.mostrarCarritos(carritosDisponibles)));
-        
     }
 
     public void retornarCarritos() throws Exception {
@@ -404,13 +399,13 @@ public class ControllerSuper {
         assert btnCerrarSupermercado != null : "fx:id=\"btnCerrarSupermercado\" was not injected: check your FXML file 'VistaSupermercado.fxml'.";
         assert btnFinalizarCompra != null : "fx:id=\"btnFinalizarCompra\" was not injected: check your FXML file 'VistaSupermercado.fxml'.";
         assert btnGenerarClienteAleatorio != null : "fx:id=\"btnGenerarClienteAleatorio\" was not injected: check your FXML file 'VistaSupermercado.fxml'.";
-        assert btnLlegoUnCliente != null : "fx:id=\"btnLlegoUnCliente\" was not injected: check your FXML file 'VistaSupermercado.fxml'.";
         assert btnPagarCaja1 != null : "fx:id=\"btnPagarCaja1\" was not injected: check your FXML file 'VistaSupermercado.fxml'.";
         assert btnPagarCaja2 != null : "fx:id=\"btnPagarCaja2\" was not injected: check your FXML file 'VistaSupermercado.fxml'.";
         assert btnPagarCaja3 != null : "fx:id=\"btnPagarCaja3\" was not injected: check your FXML file 'VistaSupermercado.fxml'.";
         assert btnPagarEnCajaDos != null : "fx:id=\"btnPagarEnCajaDos\" was not injected: check your FXML file 'VistaSupermercado.fxml'.";
         assert btnPagarEnCajaTres != null : "fx:id=\"btnPagarEnCajaTres\" was not injected: check your FXML file 'VistaSupermercado.fxml'.";
         assert btnPagarEnCajaUno != null : "fx:id=\"btnPagarEnCajaUno\" was not injected: check your FXML file 'VistaSupermercado.fxml'.";
+        assert lblClientesEnLaTienda != null : "fx:id=\"lblClientesEnLaTienda\" was not injected: check your FXML file 'VistaSupermercado.fxml'.";
         assert lblCaja1 != null : "fx:id=\"lblCaja1\" was not injected: check your FXML file 'VistaSupermercado.fxml'.";
         assert lblCaja2 != null : "fx:id=\"lblCaja2\" was not injected: check your FXML file 'VistaSupermercado.fxml'.";
         assert lblCaja3 != null : "fx:id=\"lblCaja3\" was not injected: check your FXML file 'VistaSupermercado.fxml'.";
@@ -424,6 +419,9 @@ public class ControllerSuper {
         assert lblFacturadoCaja1 != null : "fx:id=\"lblFacturadoCaja1\" was not injected: check your FXML file 'VistaSupermercado.fxml'.";
         assert lblFacturadoCaja2 != null : "fx:id=\"lblFacturadoCaja2\" was not injected: check your FXML file 'VistaSupermercado.fxml'.";
         assert lblFacturadoCaja3 != null : "fx:id=\"lblFacturadoCaja3\" was not injected: check your FXML file 'VistaSupermercado.fxml'.";
+        assert lblFacturadoCajas != null : "fx:id=\"lblFacturadoCajas\" was not injected: check your FXML file 'VistaSupermercado.fxml'.";
+        assert lblFacturadoCajas1 != null : "fx:id=\"lblFacturadoCajas1\" was not injected: check your FXML file 'VistaSupermercado.fxml'.";
+        assert lblFacturadoCajas2 != null : "fx:id=\"lblFacturadoCajas2\" was not injected: check your FXML file 'VistaSupermercado.fxml'.";
         assert lblNombre != null : "fx:id=\"lblNombre\" was not injected: check your FXML file 'VistaSupermercado.fxml'.";
         assert lblNuevoCliente != null : "fx:id=\"lblNuevoCliente\" was not injected: check your FXML file 'VistaSupermercado.fxml'.";
         assert lblProductosDisponibles != null : "fx:id=\"lblProductosDisponibles\" was not injected: check your FXML file 'VistaSupermercado.fxml'.";
@@ -439,9 +437,12 @@ public class ControllerSuper {
         assert txtColaCaja3 != null : "fx:id=\"txtColaCaja3\" was not injected: check your FXML file 'VistaSupermercado.fxml'.";
         assert txtNombre != null : "fx:id=\"txtNombre\" was not injected: check your FXML file 'VistaSupermercado.fxml'.";
         assert txtProductosDisponibles != null : "fx:id=\"txtProductosDisponibles\" was not injected: check your FXML file 'VistaSupermercado.fxml'.";
+        assert txtClientesEnTienda != null : "fx:id=\"txtClientesEnTienda\" was not injected: check your FXML file 'VistaSupermercado.fxml'.";
 
         superCarritosDisponibles.llenarColaCarritos(carritosDisponibles);
         txtCarritosDisponibles.setText((String) (superCarritosDisponibles.mostrarCarritos(carritosDisponibles)));
+
+        txtProductosDisponibles.setText(superMerc.mostrarProductos());
 //        txtCarritosDisponibles.setText("Hola");
     }
 

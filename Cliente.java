@@ -11,15 +11,16 @@ package supermercadoLopez;
 public class Cliente {
     private int cedula;
     private String nombre;
+     private MyLinkedList<Producto> producto = new MyLinkedList<>();
    
 
     public Cliente() {
     }
 
-    public Cliente(int cedula, String nombre) {
+    public Cliente(int cedula, String nombre, MyLinkedList producto) {
         this.cedula = cedula;
         this.nombre = nombre;
-        
+        this.producto = producto;
     }
 
     public int getCedula() {
@@ -37,6 +38,16 @@ public class Cliente {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    public MyLinkedList<Producto> getProducto() {
+        return producto;
+    }
+
+    public void setProducto(MyLinkedList<Producto> producto) {
+        this.producto = producto;
+    }
+    
+    
     
     @Override
     public String toString(){

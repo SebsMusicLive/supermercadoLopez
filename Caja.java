@@ -36,5 +36,7 @@ public class Caja {
         this.totalFacturado = totalFacturado;
     }
     
-    
+    public String toString(){
+        return ""+getTotalFacturado();
+    }
 }

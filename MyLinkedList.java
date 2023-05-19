@@ -101,6 +101,7 @@ public class MyLinkedList<E> {
         // String también.
         StringBuffer sb = new StringBuffer("");
 
+        
         if (!isEmpty()) {
             NodoCola<E> current = head;
             sb.append("[");
@@ -119,7 +120,30 @@ public class MyLinkedList<E> {
         }
         return sb.toString();
     }
-
+    
+    public String printProducto(){
+        //StringBuffer sb = new StringBuffer("")
+        String rta ="";
+        
+        if (!isEmpty()) {
+            NodoCola<E> current = head;
+            //sb.append("[");
+            for (int i = 0; i < size; i++) {
+                rta += current.getData();
+                current = current.getNext();
+                if (current != null) {
+                    rta += "\n";
+                } 
+//                else {
+//                    sb.append("]");
+//                }
+            }
+            System.out.println(rta.toString());
+        } else {
+            rta = "No se puede imprimir, la lista se encuentra vacia";
+        }
+        return rta.toString();
+    }
     /**
      * Busca un elemento dentro de una lista, y lo elimina.
      */

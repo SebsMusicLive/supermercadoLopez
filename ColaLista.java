@@ -62,15 +62,16 @@ public class ColaLista<E> {
             NodoCola<E> current = frente;
             //sb.append("[");
             for (int i = 0; i < size; i++) {
-                sb.append(current.getData()+";");
+                sb.append(current.getData()+"; \n");
                 current = current.getNext();
                
             }
             
 
-        } else {
-            sb.append("No se puede imprimir, la lista se encuentra vacia");
-        }
+        } 
+//        else {
+//            sb.append("No se puede imprimir, la lista se encuentra vacia");
+//        }
         return sb.toString();
     }
 }

@@ -46,6 +46,7 @@ public class Producto {
         this.precio = precio;
     }
     
-    
-    
+    public String toString(){
+        return "id: "+getIdProducto()+"\n Producto: "+getNombre()+"\n Precio: "+getPrecio()+"\n";
+    }
 }

@@ -10,12 +10,40 @@ package supermercadoLopez;
  */
 public class Supermercado {
     private int numeroCliente = 1;
+    private Producto product = new Producto();
+    private MyLinkedList<Producto> productosDisp = new MyLinkedList<>();
+
+    public Supermercado() {
+        product = new Producto(1, "Arroz", 3200);
+        productosDisp.add(product);
+        product = new Producto(2, "Panela", 2000);
+        productosDisp.add(product);
+        product = new Producto(3, "Azucar", 3000);
+        productosDisp.add(product);
+        product = new Producto(4, "Sal", 1500);
+        productosDisp.add(product);
+        product = new Producto(5, "Aceite", 5000);
+        productosDisp.add(product);
+        product = new Producto(6, "Harina Pan", 4000);
+        productosDisp.add(product);
+        product = new Producto(7, "Mayonesa Natucampo", 4000);
+        productosDisp.add(product);
+        product = new Producto(8, "Salsa de tomate Natucampo", 5000);
+        productosDisp.add(product);
+        product = new Producto(9, "Salsa Negra", 3000);
+        productosDisp.add(product);
+        product = new Producto(10, "Harina de Trigo", 4000);
+        productosDisp.add(product);
+    }
+    
     
     public Supermercado(ColaArray<Integer> colaCarritos){
+        
+        
         colaCarritos.crearCola(25);
     }
     
-    public Supermercado(ColaArray<Object> pagoCaja1, ColaArray<Object> pagoCaja2, ColaArray<Object> pagoCaja3){
+    public Supermercado(ColaArray<Caja> pagoCaja1, ColaArray<Caja> pagoCaja2, ColaArray<Caja> pagoCaja3){
         
         pagoCaja1.crearCola(1);
         pagoCaja2.crearCola(1);
@@ -29,30 +57,45 @@ public class Supermercado {
         }
     }
     
-    public void añadirClientes(ColaLista<Object> clientesAñ, int cedula, String nombre){
-        
-        
-        Cliente c1 = new Cliente(cedula, nombre);
-        
+    public void añadirClientes(ColaLista<Cliente> clientesAñ, int cedula, String nombre){
+        Cliente c1 = new Cliente(cedula, nombre, productoComprado());   
         clientesAñ.insertar(c1);
-        
-//       clientesAñ.insertar(clientes++);
     }
     
-    public void añadirClientesAleatorios(ColaLista<Object> clientesAñ){
-        Cliente c1 = new Cliente((int)(Math.random()*1000000000 + 1), "Cliente "+numeroCliente++);
-        
+    public void añadirClientesAleatorios(ColaLista<Cliente> clientesAñ){
+        Cliente c1 = new Cliente((int)(Math.random()*1000000000 + 1), "Cliente "+numeroCliente++, productoComprado());
         clientesAñ.insertar(c1);
-        
     }
     
-    
+    public MyLinkedList<Producto> productoComprado(){
+        int cantProductos = (int)Math.random()*10+1;
+        
+        MyLinkedList<Producto> productoCliente = new MyLinkedList<>();
+        
+        while(cantProductos-- >0){
+            int producto = (int)Math.random()*10+1;
+            if (producto >= productosDisp.getSize()) {
+                producto--;
+            }
+            productoCliente.add(productosDisp.get(producto));
+        }
+        
+        return productoCliente;
+    }   
     
     public String mostrarCarritos(ColaArray<Integer> colaCarritos){
         return colaCarritos.print(); 
     }
     
+    public String mostrarClientes(ColaLista<Cliente> clientes){
+        return clientes.print();
+    }
     
+    //public String mostrarPrecio()
+    
+    public String mostrarProductos(){
+        return productosDisp.printProducto();
+    }
     
     
 }
