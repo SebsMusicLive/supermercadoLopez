@@ -43,7 +43,7 @@ public class Supermercado {
         colaCarritos.crearCola(25);
     }
     
-    public Supermercado(ColaArray<Caja> pagoCaja1, ColaArray<Caja> pagoCaja2, ColaArray<Caja> pagoCaja3){
+    public Supermercado(ColaArray<Cliente> pagoCaja1, ColaArray<Cliente> pagoCaja2, ColaArray<Cliente> pagoCaja3){
         
         pagoCaja1.crearCola(1);
         pagoCaja2.crearCola(1);
