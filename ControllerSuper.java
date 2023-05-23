@@ -89,7 +89,7 @@ public class ControllerSuper {
 
     @FXML
     private Label lblFacturadoCaja3;
-    
+
     @FXML
     private Label lblFacturadoCajas;
 
@@ -159,6 +159,10 @@ public class ControllerSuper {
     private ColaLista<Cliente> colaCaja3 = new ColaLista<>();
     private ColaLista<Cliente> clientesEnTienda = new ColaLista<>();
     private ColaLista<Cliente> clientesEnEspera = new ColaLista<>();
+
+    private MyLinkedList<Integer> facturadoCaja1 = new MyLinkedList<>();
+    private MyLinkedList<Integer> facturadoCaja2 = new MyLinkedList<>();
+    private MyLinkedList<Integer> facturadoCaja3 = new MyLinkedList<>();
 
     Supermercado superMerc = new Supermercado();
 
@@ -248,8 +252,18 @@ public class ControllerSuper {
     @FXML
     void pagarCaja1(ActionEvent event) throws Exception {
         if (!pagoCaja1.colaVacia()) {
-            lblFacturadoCaja1.setText(pagoCaja1.print());
-            pagoCaja1.quitar();
+
+            Cliente cliente1 = pagoCaja1.quitar();
+
+//            Producto producto1 = 
+            for (int i = 0; i < cliente1.getProducto().getSize(); i++) {
+                facturadoCaja1.add(cliente1.getProducto().get(i).getPrecio());
+                lblFacturadoCaja1.setText(facturadoCaja1.printProducto());
+
+            }
+//            facturadoCaja1.insertar(pagoCaja1.quitar().getProducto().get(0));
+//            lblFacturadoCaja1.setText(facturadoCaja1.print());
+
             retornarCarritos();
             lblCantidadDeClientes.setText(String.valueOf(clientesEnTienda.tamañoDeLaCola()));
 
@@ -259,8 +273,7 @@ public class ControllerSuper {
             } else {
                 txtCaja1.setText("");
             }
-            
-            
+
         } else {
             JOptionPane.showMessageDialog(null, "No hay nadie en la cola de la caja 1");
         }

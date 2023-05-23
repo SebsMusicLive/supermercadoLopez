@@ -12,6 +12,7 @@ public class Supermercado {
     private int numeroCliente = 1;
     private Producto product = new Producto();
     private MyLinkedList<Producto> productosDisp = new MyLinkedList<>();
+    private MyLinkedList<Producto> productoCliente = new MyLinkedList<>();
 
     public Supermercado() {
         product = new Producto(1, "Arroz", 3200);
@@ -68,12 +69,10 @@ public class Supermercado {
     }
     
     public MyLinkedList<Producto> productoComprado(){
-        int cantProductos = (int)Math.random()*10+1;
-        
-        MyLinkedList<Producto> productoCliente = new MyLinkedList<>();
+        int cantProductos = (int) (Math.random() * 10 + 1);
         
         while(cantProductos-- >0){
-            int producto = (int)Math.random()*10+1;
+            int producto = (int) (Math.random() * 10 + 1);
             if (producto >= productosDisp.getSize()) {
                 producto--;
             }
@@ -91,7 +90,9 @@ public class Supermercado {
         return clientes.print();
     }
     
-    //public String mostrarPrecio()
+    public String mostrarPrecio(){
+        return productoCliente.print();
+    }
     
     public String mostrarProductos(){
         return productosDisp.printProducto();

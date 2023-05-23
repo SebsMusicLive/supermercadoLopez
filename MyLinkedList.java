@@ -138,7 +138,6 @@ public class MyLinkedList<E> {
 //                    sb.append("]");
 //                }
             }
-            System.out.println(rta.toString());
         } else {
             rta = "No se puede imprimir, la lista se encuentra vacia";
         }

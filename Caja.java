@@ -9,23 +9,15 @@ package supermercadoLopez;
  * @author ASUS
  */
 public class Caja {
-    private int idCaja;
+
     private int totalFacturado;
 
     public Caja() {
     }
 
-    public Caja(int idCaja, int totalFacturado) {
-        this.idCaja = idCaja;
+    public Caja(int totalFacturado) {
+
         this.totalFacturado = totalFacturado;
-    }
-
-    public int getIdCaja() {
-        return idCaja;
-    }
-
-    public void setIdCaja(int idCaja) {
-        this.idCaja = idCaja;
     }
 
     public int getTotalFacturado() {
@@ -35,8 +27,8 @@ public class Caja {
     public void setTotalFacturado(int totalFacturado) {
         this.totalFacturado = totalFacturado;
     }
-    
-    public String toString(){
-        return ""+getTotalFacturado();
+
+    public String toString() {
+        return "" + getTotalFacturado();
     }
 }
