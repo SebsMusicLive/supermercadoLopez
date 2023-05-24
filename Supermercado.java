@@ -12,7 +12,7 @@ public class Supermercado {
     private int numeroCliente = 1;
     private Producto product = new Producto();
     private MyLinkedList<Producto> productosDisp = new MyLinkedList<>();
-    private MyLinkedList<Producto> productoCliente = new MyLinkedList<>();
+//    private MyLinkedList<Producto> productoCliente = new MyLinkedList<>();
 
     public Supermercado() {
         product = new Producto(1, "Arroz", 3200);
@@ -58,18 +58,19 @@ public class Supermercado {
         }
     }
     
-    public void añadirClientes(ColaLista<Cliente> clientesAñ, int cedula, String nombre){
+    public void añadirClientes(ColaLista<Cliente> clientesAñ, int cedula, String nombre) throws Exception{
         Cliente c1 = new Cliente(cedula, nombre, productoComprado());   
         clientesAñ.insertar(c1);
     }
     
-    public void añadirClientesAleatorios(ColaLista<Cliente> clientesAñ){
-        Cliente c1 = new Cliente((int)(Math.random()*1000000000 + 1), "Cliente "+numeroCliente++, productoComprado());
+    public void añadirClientesAleatorios(ColaLista<Cliente> clientesAñ) throws Exception{
+        Cliente c1 = new Cliente((int)(Math.random()*1000000900 + 1), "Cliente "+numeroCliente++, productoComprado());
         clientesAñ.insertar(c1);
     }
     
-    public MyLinkedList<Producto> productoComprado(){
+    public MyLinkedList<Producto> productoComprado() throws Exception{
         int cantProductos = (int) (Math.random() * 10 + 1);
+        MyLinkedList<Producto> productoCliente = new MyLinkedList<>();
         
         while(cantProductos-- >0){
             int producto = (int) (Math.random() * 10 + 1);
@@ -90,8 +91,14 @@ public class Supermercado {
         return clientes.print();
     }
     
-    public String mostrarPrecio(){
-        return productoCliente.print();
+    public int precioTotal(MyLinkedList<Caja> precio) throws Exception{
+        int resultado = 0;
+        
+        for (int i = 0; i < precio.getSize(); i++) {
+            resultado = precio.get(i).getTotalFacturado();
+            
+        }
+        return resultado;
     }
     
     public String mostrarProductos(){

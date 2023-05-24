@@ -143,6 +143,28 @@ public class MyLinkedList<E> {
         }
         return rta.toString();
     }
+    
+//    public String printPrecio(){
+//        String rta = "";
+//        if (!isEmpty()) {
+//            NodoCola<E> current = head;
+//            //sb.append("[");
+//            for (int i = 0; i < size; i++) {
+//                rta += current.getData();
+//                current = current.getNext();
+//                if (current != null) {
+//                    rta += "\n";
+//                } 
+////                else {
+////                    sb.append("]");
+////                }
+//            }
+//        } else {
+//            rta = "No se puede imprimir, la lista se encuentra vacia";
+//        }
+//        return rta.toString();
+//        
+//    }
     /**
      * Busca un elemento dentro de una lista, y lo elimina.
      */
@@ -205,21 +227,22 @@ public class MyLinkedList<E> {
     // METODOS PARA IMPLEMENTAR POR LOS
     // ESTUDIANTES
     // *************************************
-    public E get(int pos) {
-        if (!isEmpty()) {
-            if (pos < size) {
-                NodoCola<E> p = head;
-
-                for (int i = 0; i < pos; i++) {
-                    p = p.getNext();
-                }
-                return p.getData();
-            }
-
-        } else {
-            return null;
+    public E get(int pos) throws Exception {
+        NodoCola<E> current = null;
+        if (isEmpty()) {
+            throw new Exception("Lista vacia");
         }
-        return null;
+        if (pos >= size || pos < 0) {
+            throw new Exception("Fuera de Rango");
+        } else {
+            current = head;
+            int posc = 0;
+            while (posc != pos) {
+                current = current.getNext();
+                posc++;
+            }
+            return current.getData();
+        }
     }
 
     /**

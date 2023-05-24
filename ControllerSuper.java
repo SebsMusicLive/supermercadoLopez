@@ -160,9 +160,10 @@ public class ControllerSuper {
     private ColaLista<Cliente> clientesEnTienda = new ColaLista<>();
     private ColaLista<Cliente> clientesEnEspera = new ColaLista<>();
 
-    private MyLinkedList<Integer> facturadoCaja1 = new MyLinkedList<>();
-    private MyLinkedList<Integer> facturadoCaja2 = new MyLinkedList<>();
-    private MyLinkedList<Integer> facturadoCaja3 = new MyLinkedList<>();
+    private MyLinkedList<Caja> facturadoCaja1 = new MyLinkedList<>();
+    private MyLinkedList<Caja> facturadoCaja2 = new MyLinkedList<>();
+    private MyLinkedList<Caja> facturadoCaja3 = new MyLinkedList<>();
+    private int totalVendidoCaja1 = 0, totalVendidoCaja2 = 0, totalVendidoCaja3 = 0;
 
     Supermercado superMerc = new Supermercado();
 
@@ -253,18 +254,20 @@ public class ControllerSuper {
     void pagarCaja1(ActionEvent event) throws Exception {
         if (!pagoCaja1.colaVacia()) {
 
-            Cliente cliente1 = pagoCaja1.quitar();
+            Cliente cliente = pagoCaja1.quitar();
+            Caja caja = new Caja();
+            int factTotal = 0;
 
 //            Producto producto1 = 
-            for (int i = 0; i < cliente1.getProducto().getSize(); i++) {
-                facturadoCaja1.add(cliente1.getProducto().get(i).getPrecio());
-                lblFacturadoCaja1.setText(facturadoCaja1.printProducto());
-
+            for (int i = 0; i < cliente.getProducto().getSize(); i++) {
+                caja = new Caja(i, cliente.getProducto().get(i).getPrecio());
+                facturadoCaja1.add(caja);
+                factTotal += superMerc.precioTotal(facturadoCaja1);
             }
-//            facturadoCaja1.insertar(pagoCaja1.quitar().getProducto().get(0));
-//            lblFacturadoCaja1.setText(facturadoCaja1.print());
-
+            totalVendidoCaja1 += factTotal;
             retornarCarritos();
+            lblFacturadoCaja1.setText(String.valueOf(factTotal));
+            txtCarritosDisponibles.setText(carritosDisponibles.print());
             lblCantidadDeClientes.setText(String.valueOf(clientesEnTienda.tamañoDeLaCola()));
 
             if (!colaCaja1.colaVacia()) {
@@ -285,8 +288,18 @@ public class ControllerSuper {
     void pagarCaja2(ActionEvent event) throws Exception {
         if (!pagoCaja2.colaVacia()) {
 
-            pagoCaja2.quitar();
+            Cliente cliente = pagoCaja2.quitar();
+            Caja caja = new Caja();
+            int factTotal = 0;
+
+            for (int i = 0; i < cliente.getProducto().getSize(); i++) {
+                caja = new Caja(i, cliente.getProducto().get(i).getPrecio());
+                facturadoCaja2.add(caja);
+                factTotal += superMerc.precioTotal(facturadoCaja2);
+            }
+            totalVendidoCaja2 += factTotal;
             retornarCarritos();
+            lblFacturadoCaja2.setText(String.valueOf(factTotal));
             txtCarritosDisponibles.setText(carritosDisponibles.print());
             lblCantidadDeClientes.setText(String.valueOf(clientesEnTienda.tamañoDeLaCola()));
 
@@ -306,8 +319,17 @@ public class ControllerSuper {
     void pagarCaja3(ActionEvent event) throws Exception {
         if (!pagoCaja3.colaVacia()) {
 
-            pagoCaja3.quitar();
+            Cliente cliente = pagoCaja3.quitar();
+            Caja caja = new Caja();
+            int factTotal = 0;
+            for (int i = 0; i < cliente.getProducto().getSize(); i++) {
+                caja = new Caja(i, cliente.getProducto().get(i).getPrecio());
+                facturadoCaja3.add(caja);
+                factTotal += superMerc.precioTotal(facturadoCaja3);
+            }
+            totalVendidoCaja3 += factTotal;
             retornarCarritos();
+            lblFacturadoCaja3.setText(String.valueOf(factTotal));
             txtCarritosDisponibles.setText(carritosDisponibles.print());
             lblCantidadDeClientes.setText(String.valueOf(clientesEnTienda.tamañoDeLaCola()));
             if (!colaCaja3.colaVacia()) {
@@ -324,7 +346,9 @@ public class ControllerSuper {
 
     @FXML
     void cerrarSupermercado(ActionEvent event) {
-
+        System.out.println("Total vendido caja 1: " + totalVendidoCaja1 + "\n"
+                + "Total vendido caja 2: " + totalVendidoCaja2 + "\n"
+                + "Total vendido caja 3: " + totalVendidoCaja3);
     }
 
     @FXML
@@ -334,28 +358,20 @@ public class ControllerSuper {
             String nombreCliente = txtNombre.getText();
             if (carritosDisponibles.colaVacia()) {
                 superMerc.añadirClientes(clientesEnEspera, cedulaCliente, nombreCliente);
-
                 String clientesStr = String.valueOf(clientesEnEspera.tamañoDeLaCola());
-
                 txtClientesEnEspera.setText(clientesStr);
-
                 txtNombre.setText("");
                 txtCedula.setText("");
-
             } else {
-
-                superCarritosDisponibles.añadirClientes(clientesEnTienda, cedulaCliente, nombreCliente);
+                superMerc.añadirClientes(clientesEnTienda, cedulaCliente, nombreCliente);
                 String clientesStr = String.valueOf(clientesEnTienda.tamañoDeLaCola());
-
                 lblCantidadDeClientes.setText(clientesStr);
                 carritosEntienda.insertar(carritosDisponibles.quitar());
                 txtNombre.setText("");
                 txtCedula.setText("");
-
             }
             txtClientesEnTienda.setText(superMerc.mostrarClientes(clientesEnTienda));
-
-            txtCarritosDisponibles.setText((String) (superCarritosDisponibles.mostrarCarritos(carritosDisponibles)));
+            txtCarritosDisponibles.setText((String) (superMerc.mostrarCarritos(carritosDisponibles)));
         } else {
             JOptionPane.showMessageDialog(null, "No ingresaste una cédula correcta");
         }
@@ -365,25 +381,17 @@ public class ControllerSuper {
     @FXML
     void generarClienteAleatorio(ActionEvent event) throws Exception {
         if (carritosDisponibles.colaVacia()) {
-            superCarritosDisponibles.añadirClientesAleatorios(clientesEnTienda);
-
+            superMerc.añadirClientesAleatorios(clientesEnTienda);
             String clientesStr = String.valueOf(clientesEnEspera.tamañoDeLaCola());
-
             txtClientesEnEspera.setText(clientesStr);
-
         } else {
-
-            superCarritosDisponibles.añadirClientesAleatorios(clientesEnTienda);
+            superMerc.añadirClientesAleatorios(clientesEnTienda);
             String clientesStr = String.valueOf(clientesEnTienda.tamañoDeLaCola());
-
             lblCantidadDeClientes.setText(clientesStr);
-
             carritosEntienda.insertar(carritosDisponibles.quitar());
-
         }
         txtClientesEnTienda.setText(superMerc.mostrarClientes(clientesEnTienda));
-        txtCarritosDisponibles.setText((String) (superCarritosDisponibles.mostrarCarritos(carritosDisponibles)));
-
+        txtCarritosDisponibles.setText((String) (superMerc.mostrarCarritos(carritosDisponibles)));
     }
 
     public void retornarCarritos() throws Exception {
