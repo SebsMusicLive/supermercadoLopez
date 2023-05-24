@@ -7,78 +7,78 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="1203.0" stylesheets="@StyleJavaFX.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="supermercadoLopez.ControllerSuper">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="642.0" prefWidth="1467.0" stylesheets="@StyleJavaFX.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="supermercadoLopez.ControllerSuper">
    <children>
-      <Label fx:id="lblSupermercado" layoutX="425.0" layoutY="26.0" text="SUPERMERCADO LOPEZ" textFill="RED">
+      <Label fx:id="lblSupermercado" layoutX="543.0" layoutY="24.0" text="SUPERMERCADO LOPEZ" textFill="RED">
          <font>
             <Font name="Times New Roman Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="lblCarritosDisponibles" layoutX="82.0" layoutY="84.0" text="CARRITOS DISPONIBLES">
+      <Label fx:id="lblCarritosDisponibles" layoutX="200.0" layoutY="82.0" text="CARRITOS DISPONIBLES">
          <font>
             <Font size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="txtCarritosDisponibles" editable="false" layoutX="285.0" layoutY="81.0" prefHeight="25.0" prefWidth="327.0" />
-      <Label fx:id="lblCaja1" layoutX="161.0" layoutY="196.0" text="CAJA 1">
+      <TextField fx:id="txtCarritosDisponibles" editable="false" layoutX="403.0" layoutY="79.0" prefHeight="25.0" prefWidth="327.0" />
+      <Label fx:id="lblCaja1" layoutX="360.0" layoutY="199.0" text="CAJA 1">
          <font>
             <Font size="13.0" />
          </font>
       </Label>
-      <Label fx:id="lblCaja2" layoutX="161.0" layoutY="279.0" text="CAJA 2">
+      <Label fx:id="lblCaja2" layoutX="360.0" layoutY="278.0" text="CAJA 2">
          <font>
             <Font size="13.0" />
          </font>
       </Label>
-      <Label fx:id="lblCaja3" layoutX="166.0" layoutY="356.0" text="CAJA 3">
+      <Label fx:id="lblCaja3" layoutX="365.0" layoutY="355.0" text="CAJA 3">
          <font>
             <Font size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="txtCaja3" editable="false" layoutX="239.0" layoutY="353.0" prefHeight="25.0" prefWidth="74.0" />
-      <TextField fx:id="txtCaja2" editable="false" layoutX="234.0" layoutY="276.0" prefHeight="25.0" prefWidth="74.0" />
-      <TextField fx:id="txtCaja1" editable="false" layoutX="234.0" layoutY="193.0" prefHeight="25.0" prefWidth="74.0" />
-      <Button fx:id="btnPagarEnCajaUno" layoutX="462.0" layoutY="228.0" mnemonicParsing="false" onAction="#pasarACajaUno" text="PASAR A CAJA 1" />
-      <Button fx:id="btnPagarEnCajaDos" layoutX="462.0" layoutY="316.0" mnemonicParsing="false" onAction="#pasarACajaDos" text="PASAR A CAJA 2" />
-      <Button fx:id="btnPagarEnCajaTres" layoutX="467.0" layoutY="389.0" mnemonicParsing="false" onAction="#pasarACajaTres" text="PASAR A CAJA 3" />
-      <Label fx:id="lblClientesEnEspera" layoutX="91.0" layoutY="118.0" text="CLIENTES EN ESPERA">
+      <TextField fx:id="txtCaja3" editable="false" layoutX="438.0" layoutY="352.0" prefHeight="25.0" prefWidth="306.0" />
+      <TextField fx:id="txtCaja2" editable="false" layoutX="433.0" layoutY="275.0" prefHeight="25.0" prefWidth="306.0" />
+      <TextField fx:id="txtCaja1" editable="false" layoutX="433.0" layoutY="196.0" prefHeight="25.0" prefWidth="306.0" />
+      <Button fx:id="btnPagarEnCajaUno" layoutX="857.0" layoutY="231.0" mnemonicParsing="false" onAction="#pasarACajaUno" text="PASAR A CAJA 1" />
+      <Button fx:id="btnPagarEnCajaDos" layoutX="857.0" layoutY="315.0" mnemonicParsing="false" onAction="#pasarACajaDos" text="PASAR A CAJA 2" />
+      <Button fx:id="btnPagarEnCajaTres" layoutX="857.0" layoutY="388.0" mnemonicParsing="false" onAction="#pasarACajaTres" text="PASAR A CAJA 3" />
+      <Label fx:id="lblClientesEnEspera" layoutX="209.0" layoutY="116.0" text="CLIENTES EN ESPERA">
          <font>
             <Font size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="txtClientesEnEspera" editable="false" layoutX="285.0" layoutY="116.0" prefHeight="25.0" prefWidth="99.0" />
-      <TextField fx:id="txtColaCaja1" editable="false" layoutX="323.0" layoutY="193.0" prefHeight="25.0" prefWidth="408.0" />
-      <TextField fx:id="txtColaCaja2" editable="false" layoutX="323.0" layoutY="276.0" prefHeight="25.0" prefWidth="408.0" />
-      <TextField fx:id="txtColaCaja3" editable="false" layoutX="327.0" layoutY="353.0" prefHeight="25.0" prefWidth="408.0" />
-      <Label fx:id="lblClientes" layoutX="421.0" layoutY="122.0" text="CLIENTES EN LA TIENDA:">
+      <TextField fx:id="txtClientesEnEspera" editable="false" layoutX="403.0" layoutY="114.0" prefHeight="25.0" prefWidth="99.0" />
+      <TextField fx:id="txtColaCaja1" editable="false" layoutX="759.0" layoutY="195.0" prefHeight="25.0" prefWidth="345.0" />
+      <TextField fx:id="txtColaCaja2" editable="false" layoutX="759.0" layoutY="276.0" prefHeight="25.0" prefWidth="345.0" />
+      <TextField fx:id="txtColaCaja3" editable="false" layoutX="759.0" layoutY="353.0" prefHeight="25.0" prefWidth="345.0" />
+      <Label fx:id="lblClientes" layoutX="539.0" layoutY="120.0" text="CLIENTES EN LA TIENDA:">
          <font>
             <Font size="13.0" />
          </font>
       </Label>
-      <Button fx:id="btnPagarCaja3" layoutX="166.0" layoutY="389.0" mnemonicParsing="false" onAction="#pagarCaja3" text="PAGAR CAJA" />
-      <Label fx:id="lblCantidadDeClientes" layoutX="624.0" layoutY="122.0" text="0">
+      <Button fx:id="btnPagarCaja3" layoutX="372.0" layoutY="388.0" mnemonicParsing="false" onAction="#pagarCaja3" text="PAGAR CAJA" />
+      <Label fx:id="lblCantidadDeClientes" layoutX="742.0" layoutY="120.0" text="0">
          <font>
             <Font size="13.0" />
          </font>
       </Label>
-      <Button fx:id="btnFinalizarCompra" layoutX="145.0" layoutY="153.0" mnemonicParsing="false" onAction="#finalizarCompra" text="FINALIZAR COMPRA" />
-      <Label fx:id="lblClientesCola" layoutX="462.0" layoutY="145.0" text="CLIENTES EN COLA:">
+      <Button fx:id="btnFinalizarCompra" layoutX="90.0" layoutY="148.0" mnemonicParsing="false" onAction="#finalizarCompra" text="FINALIZAR COMPRA" />
+      <Label fx:id="lblClientesCola" layoutX="580.0" layoutY="143.0" text="CLIENTES EN COLA:">
          <font>
             <Font size="13.0" />
          </font>
       </Label>
-      <Label fx:id="lblClientesEnCola" layoutX="624.0" layoutY="145.0" text="0">
+      <Label fx:id="lblClientesEnCola" layoutX="742.0" layoutY="143.0" text="0">
          <font>
             <Font size="13.0" />
          </font>
       </Label>
-      <Button fx:id="btnPagarCaja2" layoutX="173.0" layoutY="316.0" mnemonicParsing="false" onAction="#pagarCaja2" text="PAGAR CAJA" />
-      <Button fx:id="btnPagarCaja1" layoutX="167.0" layoutY="228.0" mnemonicParsing="false" onAction="#pagarCaja1" text="PAGAR CAJA" />
-      <Label fx:id="lblFacturadoCaja1" layoutX="91.0" layoutY="199.0" text="\$" />
-      <Label fx:id="lblFacturadoCaja2" layoutX="91.0" layoutY="283.0" text="\$" />
-      <Label fx:id="lblFacturadoCaja3" layoutX="91.0" layoutY="356.0" text="\$" />
-      <Button fx:id="btnCerrarSupermercado" layoutX="77.0" layoutY="27.0" mnemonicParsing="false" onAction="#cerrarSupermercado" text="CERRAR SUPERMERCADO" />
-      <Pane layoutX="797.0" prefHeight="318.0" prefWidth="408.0">
+      <Button fx:id="btnPagarCaja2" layoutX="372.0" layoutY="315.0" mnemonicParsing="false" onAction="#pagarCaja2" text="PAGAR CAJA" />
+      <Button fx:id="btnPagarCaja1" layoutX="366.0" layoutY="231.0" mnemonicParsing="false" onAction="#pagarCaja1" text="PAGAR CAJA" />
+      <Label fx:id="lblFacturadoCaja1" layoutX="306.0" layoutY="200.0" text="\$" />
+      <Label fx:id="lblFacturadoCaja2" layoutX="306.0" layoutY="279.0" text="\$" />
+      <Label fx:id="lblFacturadoCaja3" layoutX="306.0" layoutY="356.0" text="\$" />
+      <Button fx:id="btnCerrarSupermercado" layoutX="41.0" layoutY="24.0" mnemonicParsing="false" onAction="#cerrarSupermercado" text="CERRAR SUPERMERCADO" />
+      <Pane layoutX="1059.0" layoutY="2.0" prefHeight="318.0" prefWidth="408.0">
          <children>
             <Label fx:id="lblNuevoCliente" layoutX="144.0" layoutY="36.0" text="NUEVO CLIENTE" textFill="RED">
                <font>
@@ -101,7 +101,7 @@
             <Button fx:id="btnGenerarClienteAleatorio" layoutX="74.0" layoutY="241.0" mnemonicParsing="false" onAction="#generarClienteAleatorio" prefWidth="260.0" text="GENERAR CLIENTE ALEATORIO" />
          </children>
       </Pane>
-      <Pane focusTraversable="true" layoutX="795.0" layoutY="316.0" prefHeight="318.0" prefWidth="408.0">
+      <Pane focusTraversable="true" layoutX="1059.0" layoutY="318.0" prefHeight="318.0" prefWidth="408.0">
          <children>
             <Label fx:id="lblProductosDisponibles" layoutX="103.0" layoutY="39.0" text="PRODUCTOS DISPONIBLES" textFill="RED">
                <font>
@@ -111,7 +111,7 @@
             <TextArea fx:id="txtProductosDisponibles" editable="false" layoutX="74.0" layoutY="71.0" prefHeight="214.0" prefWidth="260.0" />
          </children>
       </Pane>
-      <Pane layoutX="-3.0" layoutY="434.0" prefHeight="200.0" prefWidth="798.0">
+      <Pane layoutX="262.0" layoutY="442.0" prefHeight="200.0" prefWidth="798.0">
          <children>
             <TextArea fx:id="txtClientesEnTienda" editable="false" layoutX="213.0" layoutY="28.0" prefHeight="154.0" prefWidth="373.0" />
             <Label fx:id="lblClientesEnLaTienda" layoutX="308.0" layoutY="5.0" text="CLIENTES EN LA TIENDA" textFill="RED">
@@ -119,10 +119,23 @@
                   <Font name="Times New Roman Bold" size="20.0" />
                </font>
             </Label>
+            <Label fx:id="lblInformacion" layoutX="33.0" layoutY="42.0" prefHeight="19.0" prefWidth="142.0" text="Un cliente es socio ">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblInformacion1" layoutX="33.0" layoutY="61.0" text="del supermercado " />
+            <Label fx:id="lblInformacion2" layoutX="33.0" layoutY="80.0" text="cuando se le marca " />
+            <Label fx:id="lblInformacion3" layoutX="33.0" layoutY="99.0" text="con una X, si no es" />
+            <Label fx:id="lblInformacion4" layoutX="33.0" layoutY="119.0" text="socio se le marca " />
+            <Label fx:id="lblInformacion5" layoutX="33.0" layoutY="138.0" text="con un 0" />
          </children>
       </Pane>
-      <Label fx:id="lblFacturadoCajas2" layoutX="104.0" layoutY="158.0" text="\$" />
-      <Label fx:id="lblFacturadoCajas1" layoutX="95.0" layoutY="155.0" text="\$" />
-      <Label fx:id="lblFacturadoCajas" layoutX="86.0" layoutY="156.0" text="\$" />
+      <Label fx:id="lblFacturadoCajas2" layoutX="314.0" layoutY="154.0" text="\$" />
+      <Label fx:id="lblFacturadoCajas1" layoutX="305.0" layoutY="151.0" text="\$" />
+      <Label fx:id="lblFacturadoCajas" layoutX="297.0" layoutY="154.0" text="\$" />
+      <Button fx:id="btnClientesAtendidosCaja1" layoutX="80.0" layoutY="194.0" mnemonicParsing="false" onAction="#mostrarClientesAtendidosCaja1" text="CLIENTES ATENDIDOS" />
+      <Button fx:id="btnClientesAtendidosCaja2" layoutX="80.0" layoutY="273.0" mnemonicParsing="false" onAction="#mostrarClientesAtendidosCaja2" text="CLIENTES ATENDIDOS" />
+      <Button fx:id="btnClientesAtendidosCaja3" layoutX="80.0" layoutY="350.0" mnemonicParsing="false" onAction="#mostrarClientesAtendidosCaja3" text="CLIENTES ATENDIDOS" />
    </children>
 </Pane>

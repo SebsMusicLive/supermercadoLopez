@@ -10,13 +10,15 @@ package supermercadoLopez;
  */
 public class Caja {
     private int idCaja;
+    private String nombre;
     private int totalFacturado;
 
     public Caja() {
     }
 
-    public Caja(int idCaja, int totalFacturado) {
+    public Caja(int idCaja, String nombre, int totalFacturado) {
         this.idCaja = idCaja;
+        this.nombre = nombre;
         this.totalFacturado = totalFacturado;
     }
 
@@ -28,6 +30,15 @@ public class Caja {
         this.idCaja = idCaja;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
+
     public int getTotalFacturado() {
         return totalFacturado;
     }
@@ -36,8 +47,8 @@ public class Caja {
         this.totalFacturado = totalFacturado;
     }
 
-
+    
     public String toString() {
-        return "" + getTotalFacturado();
+        return "Nombre: "+ getNombre();
     }
 }

@@ -59,13 +59,20 @@ public class Supermercado {
     }
     
     public void añadirClientes(ColaLista<Cliente> clientesAñ, int cedula, String nombre) throws Exception{
-        Cliente c1 = new Cliente(cedula, nombre, productoComprado());   
+        int socio = (int)(Math.random()*10 + 1);
+        Cliente c1 = new Cliente(cedula, nombre, productoComprado(), clienteSocio(socio));   
         clientesAñ.insertar(c1);
     }
     
     public void añadirClientesAleatorios(ColaLista<Cliente> clientesAñ) throws Exception{
-        Cliente c1 = new Cliente((int)(Math.random()*1000000900 + 1), "Cliente "+numeroCliente++, productoComprado());
+        int socio = (int)(Math.random()*10 + 1);
+        Cliente c1 = new Cliente((int)(Math.random()*1000000900 + 1), "Cliente "+numeroCliente++, productoComprado(), clienteSocio(socio));
         clientesAñ.insertar(c1);
+    }
+    
+    public boolean clienteSocio(int socio){
+        //Es socio quien tenga el valor de uno
+        return socio<3;
     }
     
     public MyLinkedList<Producto> productoComprado() throws Exception{
@@ -82,6 +89,26 @@ public class Supermercado {
         
         return productoCliente;
     }   
+    
+    public String mostrarClientesAtendidos(MyLinkedList<Caja> caja) throws Exception{
+        String rta="", nombre = "", nombreAnterior = "";
+        int totalFacturado=0;
+
+        for (int i = 0; i < caja.getSize(); i++) {
+            totalFacturado+=caja.get(i).getTotalFacturado();
+            nombre = caja.get(i).getNombre();
+            if(i>0){
+                nombreAnterior = caja.get(i-1).getNombre();
+            }
+            
+            if(!nombre.equals(nombreAnterior)){
+                rta += nombre + " |  "+totalFacturado+"\n";
+            }
+            
+        }
+        
+        return rta;
+    }
     
     public String mostrarCarritos(ColaArray<Integer> colaCarritos){
         return colaCarritos.print(); 

@@ -12,15 +12,17 @@ public class Cliente {
     private int cedula;
     private String nombre;
      private MyLinkedList<Producto> producto = new MyLinkedList<>();
+     private boolean esSocio;
    
 
     public Cliente() {
     }
 
-    public Cliente(int cedula, String nombre, MyLinkedList producto) {
+    public Cliente(int cedula, String nombre, MyLinkedList producto, boolean esSocio) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.producto = producto;
+        this.esSocio = esSocio;
     }
 
     public int getCedula() {
@@ -46,12 +48,26 @@ public class Cliente {
     public void setProducto(MyLinkedList<Producto> producto) {
         this.producto = producto;
     }
-    
+
+    public boolean isEsSocio() {
+        return esSocio;
+    }
+
+    public void setEsSocio(boolean esSocio) {
+        this.esSocio = esSocio;
+    }
     
     
     @Override
     public String toString(){
-        
-        return "Cédula: "+ this.getCedula() + "\n Nombre: "+this.getNombre();
+        String socio="";
+        if(isEsSocio()){
+            //Si es socio se le asigna una X
+            socio="X";
+        }else{
+            //Si no es socio se le asigna un 0
+            socio="0";
+        }
+        return "Cédula: "+ this.getCedula() + "\n Nombre: "+this.getNombre()+ "\n Socio: "+socio;
     }
 }
