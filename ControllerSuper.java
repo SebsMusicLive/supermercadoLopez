@@ -4,10 +4,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 
 public class ControllerSuper {
@@ -345,10 +347,23 @@ public class ControllerSuper {
     }
 
     @FXML
-    void cerrarSupermercado(ActionEvent event) {
-        System.out.println("Total vendido caja 1: " + totalVendidoCaja1 + "\n"
-                + "Total vendido caja 2: " + totalVendidoCaja2 + "\n"
-                + "Total vendido caja 3: " + totalVendidoCaja3);
+    void cerrarSupermercado(ActionEvent event) throws Exception {
+//        System.out.println("Total vendido caja 1: " + totalVendidoCaja1 + "\n"
+//                + "Total vendido caja 2: " + totalVendidoCaja2 + "\n"
+//                + "Total vendido caja 3: " + totalVendidoCaja3);
+
+        if (tiendaVacia()) {
+            int totalVendido = totalVendidoCaja1 + totalVendidoCaja2 + totalVendidoCaja3;
+
+            JOptionPane.showMessageDialog(null, "Ganancias totales: \n "
+                    + "Caja 1: " + totalVendidoCaja1 + "\n "
+                    + "Caja 2: " + totalVendidoCaja2 + "\n "
+                    + "Caja 3: " + totalVendidoCaja3 + "\n "
+                    + "Total vendido: " + totalVendido);
+            cerrarVentana(event);
+        } else {
+            JOptionPane.showMessageDialog(null, "Aún hay gente en la tienda");
+        }
     }
 
     @FXML
@@ -412,6 +427,18 @@ public class ControllerSuper {
         } catch (NumberFormatException nfe) {
             return false;
         }
+    }
+
+    private boolean tiendaVacia() {
+        return clientesEnTienda.colaVacia() && colaCaja1.colaVacia() && colaCaja2.colaVacia() && colaCaja3.colaVacia() && pagoCaja1.colaVacia() && pagoCaja2.colaVacia() && pagoCaja3.colaVacia();
+    }
+
+    @FXML
+    private void cerrarVentana(ActionEvent event) {
+
+        Node source = (Node) event.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
